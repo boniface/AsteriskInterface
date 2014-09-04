@@ -1,0 +1,26 @@
+ude class files #
+*.class
+
+# Package Files #
+build/*.jar
+bin/*.jar
+*.war
+*.ear
+
+# netbeans ignore personal stuff #
+nbproject/private/
+build/
+dist/
+
+# generic files to ignore #
+*~
+*.lock
+*.DS_Store
+*.DS_Store?
+*.swp
+*.out
+
+# Configuration files
+config.xml
+log4j.xml
+
