@@ -22,5 +22,6 @@ dist/
 
 # Configuration files
 config.xml
-log4j.xml
+bin/log4j.xml
+## log4j.xml
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- File appender for AMI. Logs all entries for AMI module -->
+    <appender name="ami_all_log_txt" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="File" value="/cf/tmp/voip-ami-all-log.log"/>
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <!-- Define rolling policy -->
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="/cf/tmp/voip-ami-all-log.%d.log.gz" />
+        </rollingPolicy>
+        <!-- Define layout -->
+        <layout class="me.dayler.common.log4j.SimplePatternLayout">
+            <param name="Header" value="true"/>
+            <!-- The log message pattern -->
+            <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] [%c]#[%M] - %m%n" />
+        </layout>
+    </appender>
+    <!-- File appender for AMI. Reader entries. -->
+    <appender name="ami_reader_log_txt" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="File" value="/cf/tmp/voip-ami-reader-log.log"/>
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <!-- Define rolling policy -->
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="/cf/tmp/voip-ami-reader-log.%d.log.gz" />
+        </rollingPolicy>
+        <!-- Define layout -->
+        <layout class="me.dayler.common.log4j.SimplePatternLayout">
+            <param name="Header" value="true"/>
+            <!-- The log message pattern -->
+            <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] [%c]#[%M] - %m%n" />
+        </layout>
+    </appender>
+    <!-- File appender for AMI. Writer entries. -->
+    <appender name="ami_writer_log_txt" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="File" value="/cf/tmp/voip-ami-writer-log.log"/>
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <!-- Define rolling policy -->
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="/cf/tmp/voip-ami-writer-log.%d.log.gz" />
+        </rollingPolicy>
+        <!-- Define layout -->
+        <layout class="me.dayler.common.log4j.SimplePatternLayout">
+            <param name="Header" value="true"/>
+            <!-- The log message pattern -->
+            <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] [%c]#[%M] - %m%n" />
+        </layout>
+    </appender>
+    <!-- File appender for AMI. Service entries. -->
+    <appender name="ami_service_log_txt" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="File" value="/cf/tmp/voip-ami-service-log.log"/>
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <!-- Define rolling policy -->
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="/cf/tmp/voip-ami-service-log.%d.log.gz" />
+        </rollingPolicy>
+        <!-- Define layout -->
+        <layout class="me.dayler.common.log4j.SimplePatternLayout">
+            <param name="Header" value="true"/>
+            <!-- The log message pattern -->
+            <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] [%c]#[%M] - %m%n" />
+        </layout>
+    </appender>
+    <!-- File appender for AMI. listener entries. -->
+    <appender name="ami_service_listener_log_txt" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="File" value="/cf/tmp/voip-ami-service-listener-log.log"/>
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <!-- Define rolling policy -->
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="/cf/tmp/voip-ami-service-listener-log.%d.log.gz" />
+        </rollingPolicy>
+        <!-- Define layout -->
+        <layout class="me.dayler.common.log4j.SimplePatternLayout">
+            <param name="Header" value="true"/>
+            <!-- The log message pattern -->
+            <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] [%c]#[%M] - %m%n" />
+        </layout>
+    </appender>
+    <!-- Console appender definition -->
+    <appender name="console_app" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The log message pattern -->
+            <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] [%c]#[%M] - %m%n" />
+        </layout>
+    </appender>
+    <!-- Setup null appender -->
+    <appender name="NULL" class="org.apache.log4j.varia.NullAppender">
+    </appender>
+    <!-- Define categories -->
+    <category  name="me.dayler.ai">
+        <priority value="TRACE"></priority>
+        <appender-ref ref="ami_all_log_txt"></appender-ref>
+        <appender-ref ref="console_app"></appender-ref>
+    </category>
+    <category name="me.dayler.ai.ami.conn.ManagerReaderImpl">
+        <priority value="TRACE"></priority>
+        <appender-ref ref="ami_reader_log_txt"></appender-ref>
+        <appender-ref ref="ami_all_log_txt"></appender-ref>
+        <appender-ref ref="console_app"></appender-ref>
+    </category>
+    <category name="me.dayler.ai.ami.conn.ManagerWriterImpl">
+        <priority value="TRACE"></priority>
+        <appender-ref ref="ami_writer_log_txt"></appender-ref>
+        <appender-ref ref="ami_all_log_txt"></appender-ref>
+        <appender-ref ref="console_app"></appender-ref>
+    </category>
+        <category name="me.dayler.ai.ami.service">
+        <priority value="TRACE"></priority>
+        <appender-ref ref="ami_service_log_txt"></appender-ref>
+        <appender-ref ref="ami_all_log_txt"></appender-ref>
+        <appender-ref ref="console_app"></appender-ref>
+    </category>
+    <category name="me.dayler.ai.ami.service.AmiServiceListenerImpl">
+        <priority value="TRACE"></priority>
+        <appender-ref ref="ami_service_listener_log_txt"></appender-ref>
+        <appender-ref ref="ami_all_log_txt"></appender-ref>
+        <appender-ref ref="console_app"></appender-ref>
+    </category>
+    <!--  -->
+    <root>
+        <priority value="off" />
+        <appender-ref ref="NULL"/>
+    </root>
+</log4j:configuration>

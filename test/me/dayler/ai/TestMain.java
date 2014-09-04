@@ -8,6 +8,7 @@ import me.dayler.ai.ami.service.cache.SessionCacheLoader;
 import me.dayler.ai.ami.service.cache.SessionRemovalListener;
 import me.dayler.common.exception.OperationException;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
 
 import java.io.IOException;
@@ -33,8 +34,11 @@ public class TestMain {
         System.out.println("START TestMain.main() ...");
 
         // Configure log4j for testing purposes.
-        // BasicConfigurator.configure();
-        DOMConfigurator.configure("/cf/properties/voip/log4j.xml");
+        try {
+            DOMConfigurator.configure("/properties/asterisk/log4j.xml");
+        } catch (Throwable thwbl) {
+            BasicConfigurator.configure();
+        }
 
         AmiServiceFactory factory = new AmiServiceFactory();
         factory.setHostName(TEST_HOSTNAME)
